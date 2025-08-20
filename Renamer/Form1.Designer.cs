@@ -41,7 +41,7 @@
             label6 = new Label();
             panel2 = new Panel();
             lblProgressInfo = new Label();
-            custProgBar = new ProgressBar();
+            custProgBar = new CustomProgressBar();
             lblSummary = new Label();
             picBoxInfo = new PictureBox();
             txtFolderLocation = new TextBox();
@@ -129,7 +129,7 @@
             // 
             // panel3
             // 
-            panel3.BackColor = Color.DarkGreen;
+            panel3.BackColor = SystemColors.Highlight;
             panel3.Controls.Add(label1);
             panel3.Controls.Add(label6);
             panel3.Location = new Point(18, 3);
@@ -191,7 +191,6 @@
             // 
             // custProgBar
             // 
-            custProgBar.ForeColor = Color.DarkGreen;
             custProgBar.Location = new Point(94, 152);
             custProgBar.Name = "custProgBar";
             custProgBar.Size = new Size(317, 23);
@@ -263,6 +262,7 @@
             linkLblInfo.TabIndex = 12;
             linkLblInfo.TabStop = true;
             linkLblInfo.Text = "Program Info";
+            linkLblInfo.LinkClicked += linkLblInfo_LinkClicked;
             // 
             // label7
             // 
@@ -271,7 +271,7 @@
             label7.Name = "label7";
             label7.Size = new Size(99, 15);
             label7.TabIndex = 13;
-            label7.Text = "File Renamer v1.0";
+            label7.Text = "File Renamer v1.1";
             // 
             // Form1
             // 
@@ -319,7 +319,7 @@
         private Panel panel3;
         private Label label1;
         private Label lblSummary;
-        private ProgressBar custProgBar;
+        private CustomProgressBar custProgBar;
         private Label lblProgressInfo;
         private Label label6;
         private Label label7;
