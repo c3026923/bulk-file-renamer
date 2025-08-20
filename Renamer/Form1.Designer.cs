@@ -40,6 +40,7 @@
             label1 = new Label();
             label6 = new Label();
             panel2 = new Panel();
+            chkboxMatchCase = new CheckBox();
             lblProgressInfo = new Label();
             custProgBar = new CustomProgressBar();
             lblSummary = new Label();
@@ -49,7 +50,7 @@
             picBoxAvatar = new PictureBox();
             linkLblGithub = new LinkLabel();
             linkLblInfo = new LinkLabel();
-            label7 = new Label();
+            lblVersion = new Label();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
@@ -69,10 +70,10 @@
             // 
             // btnConvert
             // 
-            btnConvert.Location = new Point(13, 152);
+            btnConvert.Location = new Point(342, 178);
             btnConvert.Name = "btnConvert";
             btnConvert.Size = new Size(75, 23);
-            btnConvert.TabIndex = 3;
+            btnConvert.TabIndex = 6;
             btnConvert.Text = "Convert";
             btnConvert.UseVisualStyleBackColor = true;
             btnConvert.Click += btnConvert_Click;
@@ -100,14 +101,14 @@
             txtToReplace.Location = new Point(99, 96);
             txtToReplace.Name = "txtToReplace";
             txtToReplace.Size = new Size(312, 23);
-            txtToReplace.TabIndex = 6;
+            txtToReplace.TabIndex = 2;
             // 
             // txtReplacement
             // 
             txtReplacement.Location = new Point(99, 121);
             txtReplacement.Name = "txtReplacement";
             txtReplacement.Size = new Size(312, 23);
-            txtReplacement.TabIndex = 7;
+            txtReplacement.TabIndex = 3;
             // 
             // label4
             // 
@@ -124,7 +125,7 @@
             panel1.Controls.Add(panel2);
             panel1.Location = new Point(12, 9);
             panel1.Name = "panel1";
-            panel1.Size = new Size(456, 264);
+            panel1.Size = new Size(456, 269);
             panel1.TabIndex = 9;
             // 
             // panel3
@@ -161,6 +162,7 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(chkboxMatchCase);
             panel2.Controls.Add(lblProgressInfo);
             panel2.Controls.Add(custProgBar);
             panel2.Controls.Add(lblSummary);
@@ -176,31 +178,41 @@
             panel2.Controls.Add(btnBrowse);
             panel2.Location = new Point(18, 37);
             panel2.Name = "panel2";
-            panel2.Size = new Size(420, 226);
+            panel2.Size = new Size(420, 232);
             panel2.TabIndex = 9;
+            // 
+            // chkboxMatchCase
+            // 
+            chkboxMatchCase.AutoSize = true;
+            chkboxMatchCase.Location = new Point(7, 157);
+            chkboxMatchCase.Name = "chkboxMatchCase";
+            chkboxMatchCase.Size = new Size(88, 19);
+            chkboxMatchCase.TabIndex = 4;
+            chkboxMatchCase.Text = "Match Case";
+            chkboxMatchCase.UseVisualStyleBackColor = true;
             // 
             // lblProgressInfo
             // 
-            lblProgressInfo.AutoSize = true;
-            lblProgressInfo.Location = new Point(298, 178);
+            lblProgressInfo.ForeColor = SystemColors.ControlText;
+            lblProgressInfo.Location = new Point(241, 158);
             lblProgressInfo.Name = "lblProgressInfo";
-            lblProgressInfo.Size = new Size(113, 15);
+            lblProgressInfo.Size = new Size(170, 15);
             lblProgressInfo.TabIndex = 14;
             lblProgressInfo.Text = "Renaming files: x / y";
             lblProgressInfo.Visible = false;
             // 
             // custProgBar
             // 
-            custProgBar.Location = new Point(94, 152);
+            custProgBar.Location = new Point(7, 182);
             custProgBar.Name = "custProgBar";
-            custProgBar.Size = new Size(317, 23);
+            custProgBar.Size = new Size(329, 15);
             custProgBar.TabIndex = 13;
             // 
             // lblSummary
             // 
-            lblSummary.Location = new Point(7, 193);
+            lblSummary.Location = new Point(7, 203);
             lblSummary.Name = "lblSummary";
-            lblSummary.Size = new Size(404, 33);
+            lblSummary.Size = new Size(404, 29);
             lblSummary.TabIndex = 12;
             lblSummary.Text = "Renamed {totalCount} files from 'x' to 'y'";
             lblSummary.Visible = false;
@@ -235,7 +247,7 @@
             // picBoxAvatar
             // 
             picBoxAvatar.BorderStyle = BorderStyle.FixedSingle;
-            picBoxAvatar.Location = new Point(436, 279);
+            picBoxAvatar.Location = new Point(436, 284);
             picBoxAvatar.Name = "picBoxAvatar";
             picBoxAvatar.Size = new Size(32, 32);
             picBoxAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -245,7 +257,7 @@
             // linkLblGithub
             // 
             linkLblGithub.AutoSize = true;
-            linkLblGithub.Location = new Point(387, 288);
+            linkLblGithub.Location = new Point(387, 293);
             linkLblGithub.Name = "linkLblGithub";
             linkLblGithub.Size = new Size(43, 15);
             linkLblGithub.TabIndex = 11;
@@ -256,7 +268,7 @@
             // linkLblInfo
             // 
             linkLblInfo.AutoSize = true;
-            linkLblInfo.Location = new Point(304, 288);
+            linkLblInfo.Location = new Point(304, 293);
             linkLblInfo.Name = "linkLblInfo";
             linkLblInfo.Size = new Size(77, 15);
             linkLblInfo.TabIndex = 12;
@@ -264,21 +276,21 @@
             linkLblInfo.Text = "Program Info";
             linkLblInfo.LinkClicked += linkLblInfo_LinkClicked;
             // 
-            // label7
+            // lblVersion
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(199, 288);
-            label7.Name = "label7";
-            label7.Size = new Size(99, 15);
-            label7.TabIndex = 13;
-            label7.Text = "File Renamer v1.1";
+            lblVersion.AutoSize = true;
+            lblVersion.Location = new Point(199, 293);
+            lblVersion.Name = "lblVersion";
+            lblVersion.Size = new Size(99, 15);
+            lblVersion.TabIndex = 13;
+            lblVersion.Text = "File Renamer v1.2";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(480, 321);
-            Controls.Add(label7);
+            Controls.Add(lblVersion);
             Controls.Add(linkLblInfo);
             Controls.Add(linkLblGithub);
             Controls.Add(picBoxAvatar);
@@ -322,6 +334,7 @@
         private CustomProgressBar custProgBar;
         private Label lblProgressInfo;
         private Label label6;
-        private Label label7;
+        private Label lblVersion;
+        private CheckBox chkboxMatchCase;
     }
 }

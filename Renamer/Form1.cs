@@ -15,7 +15,7 @@ namespace Renamer
 
             InitializeComponent();
             picBoxInfo.Image = Properties.Resources.Info;
-            picBoxAvatar.ImageLocation = "https://avatars.githubusercontent.com/u/147670061?v=4";                
+            picBoxAvatar.ImageLocation = "https://avatars.githubusercontent.com/u/147670061?v=4";
             custProgBar.Style = ProgressBarStyle.Blocks;
         }
 
@@ -36,17 +36,18 @@ namespace Renamer
             var totalCount = 0;
             var currentCount = 0;
 
+            #region Validation
             if (!Directory.Exists(path))
             {
                 MessageBox.Show("Folder does not exist!");
                 return;
             }
-            else if(string.IsNullOrWhiteSpace(path))
+            else if (string.IsNullOrWhiteSpace(path))
             {
                 MessageBox.Show("Path was empty; please navigate to correct path.");
                 return;
             }
-            else if(path.StartsWith(Environment.GetFolderPath(Environment.SpecialFolder.Windows), StringComparison.OrdinalIgnoreCase))
+            else if (path.StartsWith(Environment.GetFolderPath(Environment.SpecialFolder.Windows), StringComparison.OrdinalIgnoreCase))
             {
                 MessageBox.Show("You cannot alter Windows directory content(s)");
                 return;
@@ -68,16 +69,21 @@ namespace Renamer
                 MessageBox.Show("Please enter text in the 'New text' box.");
                 return;
             }
-            else if(replacementText.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
+            else if (replacementText.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
             {
                 MessageBox.Show("New text cannot contain invalid characters.");
                 return;
             }
-            else if(replacementText.Length + 5 > 255)
+            else if (replacementText.Length + 5 > 255)
             {
                 MessageBox.Show("New text cannot be this long.");
                 return;
             }
+            #endregion
+
+            bool matchCase = chkboxMatchCase.Checked;
+            bool matchWholeWord = chkBoxWholeWord.Checked;
+            StringComparison comparison = matchCase ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase;
 
             try
             {
@@ -93,11 +99,11 @@ namespace Renamer
                     if (directoryName != null)
                         thisDirectory = directoryName;
 
-                    if (thisFileName.Contains(existingText))
+                    if (thisFileName.IndexOf(existingText, comparison) >= 0)
                     {
                         lblProgressInfo.Visible = true;
 
-                        string newFileName = thisFileName.Replace(existingText, replacementText);
+                        string newFileName = matchCase ? thisFileName.Replace(existingText, replacementText) : ReplaceIgnoreCase(thisFileName, existingText, replacementText);
                         string newPath = Path.Combine(thisDirectory, newFileName);
 
                         if (!File.Exists(newPath))
@@ -132,6 +138,17 @@ namespace Renamer
         private void linkLblInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("cmd", "/c start https://github.com/c3026923/bulk-file-renamer/");
+        }
+
+        private string ReplaceIgnoreCase(string input, string search, string replacement)
+        {
+            return System.Text.RegularExpressions.Regex.Replace
+            (
+                input,
+                System.Text.RegularExpressions.Regex.Escape(search),
+                replacement.Replace("$", "$$"),
+                System.Text.RegularExpressions.RegexOptions.IgnoreCase
+            );
         }
     }
 }
