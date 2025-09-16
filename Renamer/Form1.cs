@@ -110,17 +110,17 @@ namespace Renamer
                             File.Move(file, newPath);
 
                         currentCount++;
-                        custProgBar.Value = (currentCount / totalCount) * 100;
-                        lblProgressInfo.Text = $"Renaming Files: {currentCount} / {totalCount}";
+                        custProgBar.Value = (currentCount / (totalCount - 1)) * 100;
+                        lblProgressInfo.Text = $"Renaming Files: {currentCount} / {totalCount - 1}";
                     }
                 }
                 if (currentCount == 0)
                     MessageBox.Show($"Could not locate any files with text '{existingText}'");
-                else if (currentCount == totalCount && totalCount >= 1)
+                else if (currentCount == (totalCount - 1) && totalCount >= 1)
                 {
                     lblProgressInfo.Visible = false;
                     lblSummary.Visible = true;
-                    lblSummary.Text = $"Renamed {totalCount} files from '{existingText}' to '{replacementText}'";
+                    lblSummary.Text = $"Renamed {totalCount - 1} files from '{existingText}' to '{replacementText}'";
                 }
             }
             catch (Exception ex)

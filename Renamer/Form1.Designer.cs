@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             btnBrowse = new Button();
             btnConvert = new Button();
             label2 = new Label();
@@ -40,6 +41,7 @@
             label1 = new Label();
             label6 = new Label();
             panel2 = new Panel();
+            chkBoxWholeWord = new CheckBox();
             chkboxMatchCase = new CheckBox();
             lblProgressInfo = new Label();
             custProgBar = new CustomProgressBar();
@@ -162,6 +164,7 @@
             // 
             // panel2
             // 
+            panel2.Controls.Add(chkBoxWholeWord);
             panel2.Controls.Add(chkboxMatchCase);
             panel2.Controls.Add(lblProgressInfo);
             panel2.Controls.Add(custProgBar);
@@ -180,6 +183,16 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(420, 232);
             panel2.TabIndex = 9;
+            // 
+            // chkBoxWholeWord
+            // 
+            chkBoxWholeWord.AutoSize = true;
+            chkBoxWholeWord.Location = new Point(99, 157);
+            chkBoxWholeWord.Name = "chkBoxWholeWord";
+            chkBoxWholeWord.Size = new Size(129, 19);
+            chkBoxWholeWord.TabIndex = 15;
+            chkBoxWholeWord.Text = "Match Whole Word";
+            chkBoxWholeWord.UseVisualStyleBackColor = true;
             // 
             // chkboxMatchCase
             // 
@@ -283,7 +296,7 @@
             lblVersion.Name = "lblVersion";
             lblVersion.Size = new Size(99, 15);
             lblVersion.TabIndex = 13;
-            lblVersion.Text = "File Renamer v1.2";
+            lblVersion.Text = "File Renamer v1.3";
             // 
             // Form1
             // 
@@ -296,6 +309,7 @@
             Controls.Add(picBoxAvatar);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MaximumSize = new Size(496, 360);
             MinimizeBox = false;
@@ -336,5 +350,6 @@
         private Label label6;
         private Label lblVersion;
         private CheckBox chkboxMatchCase;
+        private CheckBox chkBoxWholeWord;
     }
 }
